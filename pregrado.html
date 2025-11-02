@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programas de Pregrado - UVG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'uvg-green': '#2d5016',
+                        'uvg-light-green': '#e8f5e8',
+                        'uvg-accent': '#4ade80'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .career-card {
+            transition: all 0.3s ease;
+        }
+        .career-card:hover {
+            transform: translateY(-8px);
+        }
+        .career-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+        .career-details.expanded {
+            max-height: 1000px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 via-white to-green-50">
+     Header 
+    <div class="bg-green-700 text-white py-3 px-8 shadow-lg">
+        <p class="text-center text-sm font-semibold tracking-wide uppercase">
+            Universidad del Valle Campus Altiplano
+        </p>
+    </div>
+
+    <header class="bg-gradient-to-r from-white via-green-50 to-white shadow-xl border-b border-green-100">
+        <div class="flex items-center justify-between px-8 py-8">
+            <a href="index.html" class="flex items-center space-x-6 hover:opacity-80 transition-opacity">
+                <div class="relative">
+                    <div class="w-28 h-28 bg-uvg-green rounded-full"></div>
+                    <div class="absolute -inset-2 bg-gradient-to-r from-green-400 to-green-600 rounded-full opacity-20 blur-xl"></div>
+                </div>
+            </a>
+            <div class="text-right">
+                <h1 class="text-3xl font-bold text-green-700">Programas de Pregrado</h1>
+                <p class="text-gray-600 font-medium mt-1">Tu futuro comienza aquí</p>
+            </div>
+        </div>
+    </header>
+
+     Navigation 
+    <nav class="bg-white border-b shadow-lg">
+        <div class="px-8 py-4">
+            <a href="index.html" class="inline-flex items-center text-green-700 hover:text-green-800 font-semibold transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Volver a Servicios
+            </a>
+        </div>
+    </nav>
+
+     Hero Section 
+    <section class="relative py-16 px-8 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-green-100 via-blue-50 to-green-100 opacity-50"></div>
+        <div class="relative max-w-7xl mx-auto text-center">
+            <h2 class="text-5xl font-bold text-gray-800 mb-6">Descubre tu Carrera Ideal</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                En UVG ofrecemos programas de pregrado de excelencia que combinan teoría y práctica para formar
+                profesionales líderes en sus campos.
+            </p>
+            <div class="mt-8 flex justify-center space-x-4">
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <div class="text-4xl font-bold text-green-700">15+</div>
+                    <div class="text-gray-600 mt-2">Carreras</div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <div class="text-4xl font-bold text-blue-700">95%</div>
+                    <div class="text-gray-600 mt-2">Empleabilidad</div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <div class="text-4xl font-bold text-purple-700">5,000+</div>
+                    <div class="text-gray-600 mt-2">Estudiantes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     Careers Grid 
+    <section class="py-16 px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-4xl font-bold text-gray-800 mb-12 text-center">Nuestras Carreras</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 Career Card 1 
+                <div class="career-card bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border border-gray-100 overflow-hidden cursor-pointer" onclick="toggleCareer('career1')">
+                    <div class="bg-gradient-to-r from-green-600 to-green-700 p-6 text-white">
+                        <h4 class="text-xl font-bold mb-2">Ingeniería en Ciencias de la Computación</h4>
+                        <div class="flex items-center text-green-100">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-sm">5 años</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4 leading-relaxed">Forma profesionales capaces de diseñar, desarrollar e implementar soluciones tecnológicas innovadoras.</p>
+                        <button class="text-green-700 font-semibold hover:text-green-800 transition-colors flex items-center">
+                            Ver más
+                            <svg class="w-5 h-5 ml-2 transition-transform" id="career1-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <div id="career1-details" class="career-details mt-6 space-y-4">
+                            <div>
+                                <h5 class="font-bold text-gray-800 mb-2">Áreas de Estudio:</h5>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Desarrollo de Software</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Inteligencia Artificial</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Ciberseguridad</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Redes y Sistemas</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-800 mb-2">Oportunidades Laborales:</h5>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Desarrollador de Software</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Arquitecto de Soluciones</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Científico de Datos</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Consultor TI</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 Career Card 2 
+                <div class="career-card bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border border-gray-100 overflow-hidden cursor-pointer" onclick="toggleCareer('career2')">
+                    <div class="bg-gradient-to-r from-green-600 to-green-700 p-6 text-white">
+                        <h4 class="text-xl font-bold mb-2">Ingeniería Industrial</h4>
+                        <div class="flex items-center text-green-100">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-sm">5 años</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4 leading-relaxed">Prepara líderes en optimización de procesos, gestión de operaciones y mejora continua.</p>
+                        <button class="text-green-700 font-semibold hover:text-green-800 transition-colors flex items-center">
+                            Ver más
+                            <svg class="w-5 h-5 ml-2 transition-transform" id="career2-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <div id="career2-details" class="career-details mt-6 space-y-4">
+                            <div>
+                                <h5 class="font-bold text-gray-800 mb-2">Áreas de Estudio:</h5>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Gestión de Operaciones</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Logística</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Calidad</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Proyectos</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-800 mb-2">Oportunidades Laborales:</h5>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Gerente de Operaciones</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Consultor Industrial</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Analista de Procesos</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Director de Proyectos</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 Career Card 3 
+                <div class="career-card bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border border-gray-100 overflow-hidden cursor-pointer" onclick="toggleCareer('career3')">
+                    <div class="bg-gradient-to-r from-green-600 to-green-700 p-6 text-white">
+                        <h4 class="text-xl font-bold mb-2">Administración de Empresas</h4>
+                        <div class="flex items-center text-green-100">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-sm">4 años</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4 leading-relaxed">Desarrolla habilidades gerenciales y estratégicas para liderar organizaciones exitosas.</p>
+                        <button class="text-green-700 font-semibold hover:text-green-800 transition-colors flex items-center">
+                            Ver más
+                            <svg class="w-5 h-5 ml-2 transition-transform" id="career3-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <div id="career3-details" class="career-details mt-6 space-y-4">
+                            <div>
+                                <h5 class="font-bold text-gray-800 mb-2">Áreas de Estudio:</h5>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Finanzas</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Marketing</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Recursos Humanos</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Estrategia Empresarial</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-800 mb-2">Oportunidades Laborales:</h5>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Gerente General</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Director Financiero</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Consultor Empresarial</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Emprendedor</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 Career Card 4 
+                <div class="career-card bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border border-gray-100 overflow-hidden cursor-pointer" onclick="toggleCareer('career4')">
+                    <div class="bg-gradient-to-r from-green-600 to-green-700 p-6 text-white">
+                        <h4 class="text-xl font-bold mb-2">Medicina</h4>
+                        <div class="flex items-center text-green-100">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-sm">7 años</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4 leading-relaxed">Forma médicos con excelencia académica, ética profesional y compromiso social.</p>
+                        <button class="text-green-700 font-semibold hover:text-green-800 transition-colors flex items-center">
+                            Ver más
+                            <svg class="w-5 h-5 ml-2 transition-transform" id="career4-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <div id="career4-details" class="career-details mt-6 space-y-4">
+                            <div>
+                                <h5 class="font-bold text-gray-800 mb-2">Áreas de Estudio:</h5>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Ciencias Básicas</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Clínica Médica</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Cirugía</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Medicina Preventiva</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-800 mb-2">Oportunidades Laborales:</h5>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Médico General</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Especialista</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Investigador Médico</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Docente</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 Career Card 5 
+                <div class="career-card bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border border-gray-100 overflow-hidden cursor-pointer" onclick="toggleCareer('career5')">
+                    <div class="bg-gradient-to-r from-green-600 to-green-700 p-6 text-white">
+                        <h4 class="text-xl font-bold mb-2">Arquitectura</h4>
+                        <div class="flex items-center text-green-100">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-sm">5 años</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4 leading-relaxed">Crea profesionales capaces de diseñar espacios funcionales, estéticos y sostenibles.</p>
+                        <button class="text-green-700 font-semibold hover:text-green-800 transition-colors flex items-center">
+                            Ver más
+                            <svg class="w-5 h-5 ml-2 transition-transform" id="career5-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <div id="career5-details" class="career-details mt-6 space-y-4">
+                            <div>
+                                <h5 class="font-bold text-gray-800 mb-2">Áreas de Estudio:</h5>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Diseño Arquitectónico</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Urbanismo</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Construcción</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Sostenibilidad</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-800 mb-2">Oportunidades Laborales:</h5>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Arquitecto</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Diseñador Urbano</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Gerente de Proyectos</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Consultor</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 Career Card 6 
+                <div class="career-card bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border border-gray-100 overflow-hidden cursor-pointer" onclick="toggleCareer('career6')">
+                    <div class="bg-gradient-to-r from-green-600 to-green-700 p-6 text-white">
+                        <h4 class="text-xl font-bold mb-2">Psicología</h4>
+                        <div class="flex items-center text-green-100">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-sm">5 años</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4 leading-relaxed">Forma psicólogos con sólida preparación científica y compromiso con el bienestar humano.</p>
+                        <button class="text-green-700 font-semibold hover:text-green-800 transition-colors flex items-center">
+                            Ver más
+                            <svg class="w-5 h-5 ml-2 transition-transform" id="career6-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <div id="career6-details" class="career-details mt-6 space-y-4">
+                            <div>
+                                <h5 class="font-bold text-gray-800 mb-2">Áreas de Estudio:</h5>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Psicología Clínica</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Organizacional</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Educativa</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>Social</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-800 mb-2">Oportunidades Laborales:</h5>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Psicólogo Clínico</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Consultor Organizacional</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Investigador</div>
+                                    <div class="flex items-center text-gray-600"><div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>Terapeuta</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     Admission Process 
+    <section class="py-16 px-8 bg-gradient-to-br from-green-50 to-blue-50">
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-4xl font-bold text-gray-800 mb-4 text-center">Proceso de Admisión</h3>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                Sigue estos pasos para formar parte de la comunidad UVG y comenzar tu camino hacia el éxito profesional.
+            </p>
+            <div class="grid md:grid-cols-5 gap-6">
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4 shadow-lg">1</div>
+                    <h4 class="font-bold text-gray-800 mb-2">Solicitud en Línea</h4>
+                    <p class="text-sm text-gray-600">Completa el formulario de admisión en nuestro portal web</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4 shadow-lg">2</div>
+                    <h4 class="font-bold text-gray-800 mb-2">Examen de Admisión</h4>
+                    <p class="text-sm text-gray-600">Presenta las pruebas de conocimientos y aptitudes</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4 shadow-lg">3</div>
+                    <h4 class="font-bold text-gray-800 mb-2">Entrevista Personal</h4>
+                    <p class="text-sm text-gray-600">Participa en una entrevista con el comité de admisiones</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4 shadow-lg">4</div>
+                    <h4 class="font-bold text-gray-800 mb-2">Documentación</h4>
+                    <p class="text-sm text-gray-600">Entrega los documentos requeridos certificados</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4 shadow-lg">5</div>
+                    <h4 class="font-bold text-gray-800 mb-2">Matrícula</h4>
+                    <p class="text-sm text-gray-600">Completa tu inscripción y comienza tu carrera</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     CTA Section 
+    <section class="py-16 px-8 bg-gradient-to-r from-green-700 to-green-800 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-4xl font-bold mb-6">¿Listo para Comenzar?</h3>
+            <p class="text-xl mb-8 text-green-100">
+                Únete a miles de estudiantes que han elegido UVG para construir su futuro profesional.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <button class="bg-white text-green-700 px-8 py-4 rounded-2xl font-bold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    Solicitar Admisión
+                </button>
+                <button class="bg-green-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-green-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 border-2 border-white">
+                    Agendar Visita
+                </button>
+            </div>
+        </div>
+    </section>
+
+     Footer 
+    <footer class="bg-gray-100 py-8 text-center">
+        <p class="text-gray-600">© 2025 Universidad del Valle de Guatemala - Campus Altiplano</p>
+    </footer>
+
+    <script>
+        function toggleCareer(careerId) {
+            const details = document.getElementById(careerId + '-details');
+            const icon = document.getElementById(careerId + '-icon');
+            
+            if (details && icon) {
+                details.classList.toggle('expanded');
+                icon.style.transform = details.classList.contains('expanded') ? 'rotate(180deg)' : 'rotate(0deg)';
+            }
+        }
+    </script>
+</body>
+</html>

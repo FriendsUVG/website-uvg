@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UVG - Universidad del Valle Altiplano</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'uvg-green': '#2d5016',
+                        'uvg-light-green': '#e8f5e8',
+                        'uvg-accent': '#4ade80'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Added styles for smooth expand/collapse animations -->
+    <style>
+        .section-content-expandable {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+        .section-content-expandable.expanded {
+            max-height: 2000px;
+            opacity: 1;
+        }
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+        .transition-transform {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Restructured header to match original layout with circular logo and university branding -->
+    <header class="bg-uvg-light-green px-4 py-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo Circle -->
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-uvg-green rounded-full flex-shrink-0"></div>
+            
+            <!-- University Branding -->
+            <div class="flex-1 ml-6">
+                <div class="text-gray-800">
+                    <h1 class="text-xl md:text-2xl font-bold">UVG</h1>
+                    <div class="text-xs md:text-sm leading-tight">
+                        <div class="font-semibold">UNIVERSIDAD</div>
+                        <div class="font-semibold">DEL VALLE</div>
+                        <div class="font-semibold">ALTIPLANO</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Added horizontal navigation bar matching original design -->
+    <nav class="bg-white border-b border-gray-200 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex space-x-1">
+                <button class="nav-btn bg-uvg-green text-white px-4 py-2 text-sm font-medium hover:bg-green-700 transition-colors" onclick="showSection('inicio')">
+                    INICIO
+                </button>
+                <button class="nav-btn bg-gray-200 text-gray-700 px-4 py-2 text-sm font-medium hover:bg-gray-300 transition-colors" onclick="showSection('consultas')">
+                    CONSULTAS
+                </button>
+                <button class="nav-btn bg-uvg-green text-white px-4 py-2 text-sm font-medium hover:bg-green-700 transition-colors" onclick="showSection('servicios')">
+                    SERVICIOS
+                </button>
+                <button class="nav-btn bg-gray-200 text-gray-700 px-4 py-2 text-sm font-medium hover:bg-gray-300 transition-colors" onclick="showSection('admisiones')">
+                    ADMISIONES
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content area with sidebar and campus image layout -->
+    <div class="flex min-h-screen">
+        <!-- Left Sidebar -->
+        <aside class="w-20 md:w-24 bg-white border-r border-gray-200 flex flex-col space-y-1 p-2">
+            <!-- Updated Carreras button to link to pregrado.html -->
+            <a href="pregrado.html" class="sidebar-btn bg-uvg-green text-white p-3 text-xs font-medium hover:bg-green-700 transition-colors rounded text-center">
+                Carreras
+            </a>
+            <button class="sidebar-btn bg-uvg-green text-white p-3 text-xs font-medium hover:bg-green-700 transition-colors rounded" onclick="toggleServiceDetail('investigacion')">
+                Investigación
+            </button>
+            <button class="sidebar-btn bg-uvg-green text-white p-3 text-xs font-medium hover:bg-green-700 transition-colors rounded" onclick="toggleServiceDetail('extension')">
+                Extensión
+            </button>
+            <button class="sidebar-btn bg-uvg-green text-white p-3 text-xs font-medium hover:bg-green-700 transition-colors rounded" onclick="toggleServiceDetail('biblioteca')">
+                Biblioteca
+            </button>
+            <button class="sidebar-btn bg-uvg-green text-white p-3 text-xs font-medium hover:bg-green-700 transition-colors rounded" onclick="toggleServiceDetail('campus')">
+                Campus Virtual
+            </button>
+            <!-- Updated Postgrado button to link to postgrado.html -->
+            <a href="postgrado.html" class="sidebar-btn bg-uvg-green text-white p-3 text-xs font-medium hover:bg-green-700 transition-colors rounded text-center">
+                Postgrado
+            </a>
+            <button class="sidebar-btn bg-uvg-green text-white p-3 text-xs font-medium hover:bg-green-700 transition-colors rounded" onclick="toggleServiceDetail('bienestar')">
+                Bienestar
+            </button>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 relative">
+            <!-- Campus Background Image -->
+            <div class="relative h-screen bg-cover bg-center" style="background-image: url('/placeholder.svg?height=1080&width=1920');">
+                <div class="absolute inset-0 bg-gradient-to-br from-uvg-green/30 via-transparent to-black/20"></div>
+                
+                <!-- Welcome Content Overlay -->
+                <div id="inicio-content" class="section-content absolute inset-0 flex items-center justify-center">
+                    <div class="text-center text-white z-10 max-w-4xl px-6">
+                        <h2 class="text-4xl md:text-6xl font-bold mb-6 text-balance drop-shadow-lg">
+                            Bienvenidos a UVG
+                        </h2>
+                        <p class="text-xl md:text-2xl mb-8 opacity-90 text-pretty drop-shadow">
+                            Excelencia académica en el corazón del altiplano boliviano
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="pregrado.html" class="bg-uvg-accent text-uvg-green px-8 py-4 rounded-lg font-semibold hover:bg-green-400 transition-all transform hover:scale-105 shadow-lg text-center">
+                                Explorar Carreras
+                            </a>
+                            <button onclick="showInfoModal()" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-uvg-green transition-all">
+                                Más Información
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Detail Panels -->
+                <div id="carreras-detail" class="service-detail hidden absolute top-0 right-0 w-80 h-full bg-white shadow-2xl overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-uvg-green">Carreras Universitarias</h3>
+                            <button onclick="closeServiceDetail()" class="text-gray-500 hover:text-gray-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <!-- Converted to expandable button -->
+                                <button onclick="toggleExpandSection('carreras-areas')" class="w-full text-left mb-3 flex items-center justify-between group hover:bg-green-50 p-3 rounded-lg transition-all">
+                                    <h4 class="font-bold text-uvg-green">Áreas Disponibles:</h4>
+                                    <svg class="w-5 h-5 text-uvg-green transition-transform" id="carreras-areas-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <!-- Content is now collapsible -->
+                                <div id="carreras-areas-content" class="section-content-expandable">
+                                    <div class="space-y-3">
+                                        <div class="bg-gray-50 p-3 rounded-lg">
+                                            <h5 class="font-semibold text-sm">Ingeniería y Tecnología</h5>
+                                            <ul class="text-xs text-gray-600 mt-1 space-y-1">
+                                                <li>• Ingeniería de Sistemas</li>
+                                                <li>• Ingeniería Industrial</li>
+                                                <li>• Ingeniería Civil</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-gray-50 p-3 rounded-lg">
+                                            <h5 class="font-semibold text-sm">Ciencias Económicas</h5>
+                                            <ul class="text-xs text-gray-600 mt-1 space-y-1">
+                                                <li>• Administración de Empresas</li>
+                                                <li>• Contaduría Pública</li>
+                                                <li>• Economía</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-gray-50 p-3 rounded-lg">
+                                            <h5 class="font-semibold text-sm">Ciencias de la Salud</h5>
+                                            <ul class="text-xs text-gray-600 mt-1 space-y-1">
+                                                <li>• Medicina</li>
+                                                <li>• Enfermería</li>
+                                                <li>• Odontología</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <!-- Converted to expandable button -->
+                                <button onclick="toggleExpandSection('carreras-requisitos')" class="w-full text-left mb-3 flex items-center justify-between group hover:bg-blue-50 p-3 rounded-lg transition-all">
+                                    <h4 class="font-bold text-uvg-green">Requisitos de Admisión:</h4>
+                                    <svg class="w-5 h-5 text-uvg-green transition-transform" id="carreras-requisitos-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <!-- Content is now collapsible -->
+                                <div id="carreras-requisitos-content" class="section-content-expandable">
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li class="flex items-start">
+                                            <span class="w-2 h-2 bg-uvg-green rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                            Certificado de bachillerato legalizado
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="w-2 h-2 bg-uvg-green rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                            Examen de admisión aprobado (70% mínimo)
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="w-2 h-2 bg-uvg-green rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                            Documentación personal completa
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="w-2 h-2 bg-uvg-green rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                            Pago de matrícula y aranceles
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="bg-uvg-light-green p-4 rounded-lg">
+                                <h4 class="font-bold text-uvg-green mb-2">Próximas Fechas:</h4>
+                                <div class="text-sm space-y-1">
+                                    <p><strong>Inscripciones:</strong> Enero - Febrero 2024</p>
+                                    <p><strong>Examen:</strong> Marzo 2024</p>
+                                    <p><strong>Inicio clases:</strong> Abril 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Added similar detailed panels for other services -->
+                <div id="investigacion-detail" class="service-detail hidden absolute top-0 right-0 w-80 h-full bg-white shadow-2xl overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-uvg-green">Investigación</h3>
+                            <button onclick="closeServiceDetail()" class="text-gray-500 hover:text-gray-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <!-- Converted to expandable button -->
+                                <button onclick="toggleExpandSection('investigacion-areas')" class="w-full text-left mb-3 flex items-center justify-between group hover:bg-green-50 p-3 rounded-lg transition-all">
+                                    <h4 class="font-bold text-uvg-green">Líneas de Investigación:</h4>
+                                    <svg class="w-5 h-5 text-uvg-green transition-transform" id="investigacion-areas-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div id="investigacion-areas-content" class="section-content-expandable">
+                                    <div class="space-y-3">
+                                        <div class="bg-blue-50 p-3 rounded-lg">
+                                            <h5 class="font-semibold text-sm">Tecnologías Sostenibles</h5>
+                                            <p class="text-xs text-gray-600 mt-1">Desarrollo de soluciones tecnológicas amigables con el medio ambiente</p>
+                                        </div>
+                                        <div class="bg-blue-50 p-3 rounded-lg">
+                                            <h5 class="font-semibold text-sm">Desarrollo Social</h5>
+                                            <p class="text-xs text-gray-600 mt-1">Investigación aplicada para el desarrollo comunitario</p>
+                                        </div>
+                                        <div class="bg-blue-50 p-3 rounded-lg">
+                                            <h5 class="font-semibold text-sm">Innovación Empresarial</h5>
+                                            <p class="text-xs text-gray-600 mt-1">Estudios sobre emprendimiento y gestión empresarial</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <!-- Converted to expandable button -->
+                                <button onclick="toggleExpandSection('investigacion-requisitos')" class="w-full text-left mb-3 flex items-center justify-between group hover:bg-blue-50 p-3 rounded-lg transition-all">
+                                    <h4 class="font-bold text-uvg-green">Requisitos para Participar:</h4>
+                                    <svg class="w-5 h-5 text-uvg-green transition-transform" id="investigacion-requisitos-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div id="investigacion-requisitos-content" class="section-content-expandable">
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li class="flex items-start">
+                                            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                            Ser estudiante o docente de UVG
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                            Presentar propuesta de investigación
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                            Aprobación del comité académico
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extension Detail Panel -->
+                <div id="extension-detail" class="service-detail hidden absolute top-0 right-0 w-80 h-full bg-white shadow-2xl overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-uvg-green">Extensión Universitaria</h3>
+                            <button onclick="closeServiceDetail()" class="text-gray-500 hover:text-gray-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-bold text-uvg-green mb-3">Programas Disponibles:</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-purple-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Educación Continua</h5>
+                                        <p class="text-xs text-gray-600 mt-1">Cursos y talleres para profesionales</p>
+                                    </div>
+                                    <div class="bg-purple-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Proyectos Comunitarios</h5>
+                                        <p class="text-xs text-gray-600 mt-1">Vinculación con la sociedad</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biblioteca Detail Panel -->
+                <div id="biblioteca-detail" class="service-detail hidden absolute top-0 right-0 w-80 h-full bg-white shadow-2xl overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-uvg-green">Biblioteca</h3>
+                            <button onclick="closeServiceDetail()" class="text-gray-500 hover:text-gray-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-bold text-uvg-green mb-3">Servicios Disponibles:</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Catálogo Digital</h5>
+                                        <p class="text-xs text-gray-600 mt-1">Acceso a más de 50,000 títulos digitales</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Salas de Estudio</h5>
+                                        <p class="text-xs text-gray-600 mt-1">Espacios individuales y grupales</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Préstamo de Libros</h5>
+                                        <p class="text-xs text-gray-600 mt-1">Sistema automatizado de préstamos</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold text-uvg-green mb-3">Horarios:</h4>
+                                <ul class="text-sm text-gray-600 space-y-2">
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-amber-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                        Lunes a Viernes: 7:00 AM - 9:00 PM
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-amber-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                        Sábados: 8:00 AM - 6:00 PM
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-amber-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                        Domingos: Cerrado
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campus Virtual Detail Panel -->
+                <div id="campus-detail" class="service-detail hidden absolute top-0 right-0 w-80 h-full bg-white shadow-2xl overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-uvg-green">Campus Virtual</h3>
+                            <button onclick="closeServiceDetail()" class="text-gray-500 hover:text-gray-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-bold text-uvg-green mb-3">Plataformas Disponibles:</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-indigo-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Aula Virtual</h5>
+                                        <p class="text-xs text-gray-600 mt-1">Acceso a clases y materiales en línea</p>
+                                    </div>
+                                    <div class="bg-indigo-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Sistema de Notas</h5>
+                                        <p class="text-xs text-gray-600 mt-1">Consulta de calificaciones en tiempo real</p>
+                                    </div>
+                                    <div class="bg-indigo-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Correo Institucional</h5>
+                                        <p class="text-xs text-gray-600 mt-1">Comunicación oficial universitaria</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold text-uvg-green mb-3">Requisitos de Acceso:</h4>
+                                <ul class="text-sm text-gray-600 space-y-2">
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-indigo-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                        Usuario y contraseña institucional
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-indigo-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                        Conexión a internet estable
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-indigo-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                        Navegador actualizado
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Postgrado Detail Panel -->
+                <div id="postgrado-detail" class="service-detail hidden absolute top-0 right-0 w-80 h-full bg-white shadow-2xl overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-uvg-green">Postgrado</h3>
+                            <button onclick="closeServiceDetail()" class="text-gray-500 hover:text-gray-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-bold text-uvg-green mb-3">Programas Ofertados:</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-rose-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Maestrías</h5>
+                                        <ul class="text-xs text-gray-600 mt-1 space-y-1">
+                                            <li>• MBA - Administración de Empresas</li>
+                                            <li>• Maestría en Educación Superior</li>
+                                            <li>• Maestría en Ingeniería de Software</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-rose-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Doctorados</h5>
+                                        <ul class="text-xs text-gray-600 mt-1 space-y-1">
+                                            <li>• Doctorado en Ciencias de la Educación</li>
+                                            <li>• Doctorado en Administración</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold text-uvg-green mb-3">Requisitos de Admisión:</h4>
+                                <ul class="text-sm text-gray-600 space-y-2">
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-rose-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                        Título de licenciatura legalizado
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-rose-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                        Experiencia profesional mínima 2 años
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-rose-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                        Entrevista con el comité académico
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Added button to navigate to full postgrado page -->
+                            <div class="mt-6">
+                                <a href="postgrado.html" class="block w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white py-3 px-6 rounded-xl hover:from-purple-700 hover:to-purple-800 transition-all font-semibold text-center shadow-md hover:shadow-lg">
+                                    Ver Todos los Programas →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bienestar Detail Panel -->
+                <div id="bienestar-detail" class="service-detail hidden absolute top-0 right-0 w-80 h-full bg-white shadow-2xl overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-uvg-green">Bienestar Estudiantil</h3>
+                            <button onclick="closeServiceDetail()" class="text-gray-500 hover:text-gray-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-bold text-uvg-green mb-3">Servicios de Apoyo:</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-teal-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Apoyo Psicológico</h5>
+                                        <p class="text-xs text-gray-600 mt-1">Atención profesional gratuita</p>
+                                    </div>
+                                    <div class="bg-teal-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Deportes y Recreación</h5>
+                                        <p class="text-xs text-gray-600 mt-1">Instalaciones deportivas y actividades</p>
+                                    </div>
+                                    <div class="bg-teal-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Becas y Ayudas</h5>
+                                        <p class="text-xs text-gray-600 mt-1">Programas de apoyo financiero</p>
+                                    </div>
+                                    <div class="bg-teal-50 p-3 rounded-lg">
+                                        <h5 class="font-semibold text-sm">Actividades Culturales</h5>
+                                        <p class="text-xs text-gray-600 mt-1">Eventos y talleres artísticos</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold text-uvg-green mb-3">Horarios de Atención:</h4>
+                                <ul class="text-sm text-gray-600 space-y-2">
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-teal-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                        Lunes a Viernes: 8:00 AM - 5:00 PM
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="w-2 h-2 bg-teal-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
+                                        Atención de emergencias 24/7
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Information Modal -->
+    <div id="info-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full p-8 relative">
+            <button onclick="closeInfoModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-3xl font-light w-10 h-10 rounded-full hover:bg-gray-100 transition-all">
+                ×
+            </button>
+            
+            <h3 class="text-3xl font-bold text-uvg-green mb-6">Universidad del Valle de Guatemala</h3>
+            
+            <div class="space-y-4 text-gray-700">
+                <p class="leading-relaxed">
+                    La Universidad del Valle de Guatemala - Campus Altiplano es una institución de educación superior comprometida con la excelencia académica y el desarrollo integral de sus estudiantes.
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-4 my-6">
+                    <div class="bg-uvg-light-green p-4 rounded-lg">
+                        <h4 class="font-bold text-uvg-green mb-2">Nuestra Misión</h4>
+                        <p class="text-sm">Formar profesionales competentes y éticos que contribuyan al desarrollo de la sociedad.</p>
+                    </div>
+                    <div class="bg-uvg-light-green p-4 rounded-lg">
+                        <h4 class="font-bold text-uvg-green mb-2">Nuestra Visión</h4>
+                        <p class="text-sm">Ser la universidad líder en el altiplano, reconocida por su calidad educativa e innovación.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-uvg-green mb-3">Valores Institucionales:</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-uvg-green rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                            <span>Excelencia académica y compromiso con la calidad</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-uvg-green rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                            <span>Integridad y ética profesional</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-uvg-green rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                            <span>Innovación y pensamiento crítico</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-uvg-green rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                            <span>Responsabilidad social y compromiso comunitario</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded-lg mt-6">
+                    <h4 class="font-bold text-uvg-green mb-2">Contacto</h4>
+                    <p class="text-sm">📧 info@uvg.edu.bo</p>
+                    <p class="text-sm">📞 +591 (2) 123-4567</p>
+                    <p class="text-sm">📍 Campus Altiplano, Bolivia</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionName) {
+            // Update navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-uvg-green', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            
+            event.target.classList.remove('bg-gray-200', 'text-gray-700');
+            event.target.classList.add('bg-uvg-green', 'text-white');
+            
+            // Show/hide content sections
+            document.querySelectorAll('.section-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            const targetContent = document.getElementById(sectionName + '-content');
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+            }
+        }
+
+        function toggleServiceDetail(serviceId) {
+            // Close any open service detail
+            closeServiceDetail();
+            
+            // Show the selected service detail
+            const detail = document.getElementById(serviceId + '-detail');
+            if (detail) {
+                detail.classList.remove('hidden');
+                
+                // Add slide-in animation
+                setTimeout(() => {
+                    detail.style.transform = 'translateX(0)';
+                }, 10);
+            }
+        }
+
+        function closeServiceDetail() {
+            document.querySelectorAll('.service-detail').forEach(detail => {
+                detail.classList.add('hidden');
+                // Reset transform for next opening
+                detail.style.transform = 'translateX(100%)'; 
+            });
+        }
+
+        // Functions for info modal
+        function showInfoModal() {
+            document.getElementById('info-modal').classList.remove('hidden');
+        }
+
+        function closeInfoModal() {
+            document.getElementById('info-modal').classList.add('hidden');
+        }
+
+        function toggleExpandSection(sectionId) {
+            const content = document.getElementById(sectionId + '-content');
+            const icon = document.getElementById(sectionId + '-icon');
+            
+            if (content && icon) {
+                content.classList.toggle('expanded');
+                icon.classList.toggle('rotate-180');
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial navigation state
+            showSection('inicio');
+        });
+    </script>
+</body>
+</html>
