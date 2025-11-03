@@ -1,3 +1,37 @@
+## Instalar el proyecto en local
+
+### clonar el repositorio
+
+[sitioweb-uvg](https://github.com/FriendsUVG/website-uvg)
+
+## Instalar los modulos
+
+#### pnpm & npm
+```sh
+pnpm install
+# o npm
+npm install
+```
+## Ejecutar modo dev
+
+```sh
+pnpm run dev
+# o npm
+npm run dev
+```
+
+## Compilar el proyecto
+
+```sh
+pnpm run build
+# o npm
+npm run build
+```
+
+#### Vista proyecto
+
+![](./app/src/img/uvgsite.gif)
+
 # Responsive HTML page
 
 *Automatically synced with your [v0.app](https://v0.app) deployments*
