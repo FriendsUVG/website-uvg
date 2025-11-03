@@ -30,7 +30,7 @@ npm run build
 
 #### Vista proyecto
 
-![](./app/src/img/uvgsite.gif)
+![](./app/src/img/uvgsitio-web.png)
 
 # Responsive HTML page
 

@@ -32,7 +32,7 @@ export default function HomePage() {
       ],
     },
     Académico: {
-      areas: ["Facultades", "Programas", "Biblioteca", "Recursos"],
+      areas: ["Facultades", "Programas", "Biblioteca", "Recursos", "Asuntos Estudiantiles", "Registro Académico"],
       requisitos: ["Matrícula vigente", "Cumplimiento académico", "Evaluaciones al día"],
     },
     Estudiantes: {
@@ -199,6 +199,8 @@ export default function HomePage() {
     if (area === "Programas") return "/programas"
     if (area === "Biblioteca") return "/biblioteca-academica"
     if (area === "Recursos") return "/recursos-academicos"
+    if (area === "Asuntos Estudiantiles") return "/asuntos-estudiantiles"
+    if (area === "Registro Académico") return "/registro-academico"
     return null
   }
 
@@ -536,14 +538,14 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-green-50 dark:from-gray-900 dark:via-slate-900 dark:to-emerald-950">
       <div className="bg-green-700 text-white py-2 px-4 md:py-3 md:px-8 shadow-lg">
         <p className="text-center text-xs md:text-sm font-semibold tracking-wide uppercase">
           Universidad del Valle Campus Altiplano
         </p>
       </div>
 
-      <header className="bg-gradient-to-r from-white via-green-50 to-white shadow-xl border-b border-green-100">
+      <header className="bg-gradient-to-r from-white via-green-50 to-white shadow-xl border-b border-green-100 dark:from-slate-900 dark:via-emerald-950/40 dark:to-slate-900 dark:border-emerald-900/40">
         <div className="flex flex-col md:flex-row items-center justify-between px-4 md:px-8 py-4 md:py-8 gap-4 md:gap-0">
           <div className="flex items-center space-x-3 md:space-x-6">
             <div className="relative">
@@ -562,7 +564,7 @@ export default function HomePage() {
         </div>
       </header>
 
-      <nav className="bg-white border-b shadow-lg relative overflow-hidden">
+      <nav className="bg-white border-b shadow-lg relative overflow-hidden dark:bg-slate-900 dark:border-slate-800">
         <div className="absolute inset-0 bg-gradient-to-r from-green-50 to-transparent opacity-50"></div>
         <div className="relative flex items-center px-4 md:px-8 py-3 md:py-4">
           <button
@@ -585,8 +587,18 @@ export default function HomePage() {
           </button>
           <div className="flex items-center space-x-2 md:space-x-3 md:mr-8">
             <div className="hidden md:block w-10 h-10 bg-green-700 rounded-lg flex items-center justify-center shadow-lg">
-              <div className="w-5 h-0.5 bg-white rounded-full"></div>
-              <div className="w-5 h-0.5 bg-white rounded-full absolute rotate-90"></div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className="w-5 h-5 text-white"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 5v14M5 12h14" />
+              </svg>
             </div>
             <span className="text-base md:text-xl font-bold text-gray-800 tracking-wide">SERVICIOS</span>
           </div>
@@ -611,13 +623,13 @@ export default function HomePage() {
 
         <aside
           className={`${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-            } md:translate-x-0 fixed md:static inset-y-0 left-0 w-80 bg-gradient-to-b from-white to-gray-50 shadow-2xl min-h-screen border-r border-gray-200 z-50 transition-transform duration-300 ease-in-out md:transition-none`}
+            } md:translate-x-0 fixed md:static inset-y-0 left-0 w-80 bg-gradient-to-b from-white to-gray-50 dark:from-slate-900 dark:to-slate-900 shadow-2xl min-h-screen border-r border-gray-200 dark:border-slate-800 z-50 transition-transform duration-300 ease-in-out md:transition-none`}
         >
           <div className="p-4 md:p-8 h-full overflow-y-auto">
             <div className="mb-4 md:mb-6 flex items-center justify-between md:block">
               <div>
-                <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">Servicios</h2>
-                <div className="w-16 h-1 bg-green-500 rounded-full"></div>
+                <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">Servicios</h2>
+                <div className="w-16 h-1 bg-green-500 dark:bg-emerald-400 rounded-full"></div>
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
@@ -636,7 +648,7 @@ export default function HomePage() {
                   <div key={service} className="space-y-2">
                     <button
                       onClick={() => setExpandedService(isExpanded ? null : service)}
-                      className={`w-full p-4 md:p-6 rounded-xl md:rounded-2xl bg-green-700 text-white font-semibold hover:bg-green-800 transition-all duration-300 text-left shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 relative overflow-hidden group ${isExpanded ? "ring-4 ring-green-300 ring-opacity-50" : ""
+                      className={`w-full p-4 md:p-6 rounded-xl md:rounded-2xl bg-green-700 text-white font-semibold hover:bg-green-800 transition-all duration-300 text-left shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 relative overflow-hidden group ${isExpanded ? "ring-4 ring-green-300/50 dark:ring-emerald-500/30" : ""
                         }`}
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
@@ -660,7 +672,7 @@ export default function HomePage() {
                         <div>
                           <button
                             onClick={() => toggleSection(service, "areas")}
-                            className="w-full text-left flex items-center justify-between p-3 rounded-lg bg-green-50 hover:bg-green-100 transition-colors"
+                            className="w-full text-left flex items-center justify-between p-3 rounded-lg bg-green-50 hover:bg-green-100 dark:bg-emerald-950/30 dark:hover:bg-emerald-900/40 transition-colors"
                           >
                             <span className="font-semibold text-green-800 flex items-center">
                               <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
@@ -700,7 +712,7 @@ export default function HomePage() {
                                   <Link
                                     key={areaIndex}
                                     href={href}
-                                    className="block p-2 rounded-md bg-white hover:bg-green-50 text-sm text-gray-700 hover:text-green-700 transition-colors"
+                                    className="block p-2 rounded-md bg-white hover:bg-green-50 text-sm text-gray-700 hover:text-green-700 dark:bg-slate-900 dark:text-gray-200 dark:hover:bg-slate-800 dark:hover:text-emerald-300 transition-colors"
                                   >
                                     {area}
                                   </Link>
@@ -718,7 +730,7 @@ export default function HomePage() {
                         <div>
                           <button
                             onClick={() => toggleSection(service, "requisitos")}
-                            className="w-full text-left flex items-center justify-between p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors"
+                            className="w-full text-left flex items-center justify-between p-3 rounded-lg bg-blue-50 hover:bg-blue-100 dark:bg-slate-800/60 dark:hover:bg-slate-800 transition-colors"
                           >
                             <span className="font-semibold text-blue-800 flex items-center">
                               <div className="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
@@ -756,7 +768,7 @@ export default function HomePage() {
                                   <Link
                                     key={reqIndex}
                                     href={href}
-                                    className="block p-2 rounded-md bg-white hover:bg-blue-50 text-sm text-gray-700 hover:text-blue-700 transition-colors"
+                                    className="block p-2 rounded-md bg-white hover:bg-blue-50 text-sm text-gray-700 hover:text-blue-700 dark:bg-slate-900 dark:text-gray-200 dark:hover:bg-slate-800 dark:hover:text-blue-300 transition-colors"
                                   >
                                     {requisito}
                                   </Link>
