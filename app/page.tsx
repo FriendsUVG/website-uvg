@@ -41,7 +41,7 @@ export default function HomePage() {
     },
     Financiero: {
       areas: ["Pagos", "Becas", "Créditos", "Facturación"],
-      requisitos: ["Documentos financieros", "Comprobantes de pago", "Solicitudes formales"],
+      requisitos: ["Documentos financieros", "Comprobantes de pago", "Solicitudes formales", "Cuestionario ayuda financiera"],
     },
     Biblioteca: {
       areas: ["Catálogo", "Recursos digitales", "Salas de estudio", "Préstamos"],
@@ -353,6 +353,14 @@ export default function HomePage() {
         hover: "hover:from-slate-100 hover:to-slate-200",
         icon: "text-slate-700",
       }
+    } else if (requisito === "Cuestionario ayuda financiera") {
+      return {
+        bg: "from-amber-50 to-amber-100",
+        border: "border-amber-700",
+        text: "text-amber-800",
+        hover: "hover:from-amber-100 hover:to-amber-200",
+        icon: "text-amber-700",
+      }
     }
     return null
   }
@@ -361,6 +369,7 @@ export default function HomePage() {
     if (requisito === "Documentos financieros") return "/documentos-financieros"
     if (requisito === "Comprobantes de pago") return "/comprobantes-pago"
     if (requisito === "Solicitudes formales") return "/solicitudes-formales"
+    if (requisito === "Cuestionario ayuda financiera") return "/cuestionario-ayuda-financiera"
     return null
   }
 
